@@ -115,3 +115,51 @@ confirm that you can run Ansible tasks on the managed hosts. Run an ansible comm
 
 
 =====================================================
+
+### Running Ad Hoc Commands
+
+An ad hoc command is a way to execute a single Ansible task quickly, on that you don't need to save to run again later. They're simple, one-line operations that can be run without writing a playbook.
+
+They're useful for quick tests and changes. THis is a useful tool to quickly perform simple tasks with Ansible. Although they do have their limits.
+
+Syntax:
+
+`ansible hosts-pattern -m module [-a 'module arguments'][-i inventory]`
+
+Example:(-b means sudo)
+
+`ansible  all -m command -a 'id' -b`
+
+`ansible -m yum -a 'name=httpd state=latest' -b`
+
+`ansible all -m command -a 'whoami' -b`
+
+`ansible-doc -l` command lists all the modules that are installed on the system. you can then use `ansible-doc` to view the documentation of particular modules by name and find information about the arguments the modules take as options. Example `ansible-doc ping`
+
+Ansible Command Line options
+
+Inventory           -i
+
+remote_user         -u
+
+become              --become, -b
+
+become_method       --become-method
+
+become_user         --become-user
+
+become_ask_pass     --ask-become-pass, -k
+
+
+
+
+
+
+
+### Generating Inventories Dynamically
+
+Static Inventory files are easy to write and are convenient for managing small infrastructures. When working with a large number of machines, it can be hard  to keep the static inventory files up to date.
+
+Contributed scripts to the ansible project reside at:
+
+ https://github.com/ansible/ansible/tree/devel/contrib/inventory
